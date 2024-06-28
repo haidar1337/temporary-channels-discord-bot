@@ -13,7 +13,7 @@ node_modules/
 
 dist/
 .env
-src/.env
+
 
 # Ignore the config file (contains sensitive information such as tokens)
 config.ts
