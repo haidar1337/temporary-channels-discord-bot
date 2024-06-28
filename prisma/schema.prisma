@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Panel {
+  id        String @id @default(cuid()) @map("_id")
+  channelId String @unique
+  guildId   String @unique 
+  guild     Guild  @relation(fields: [guildId], references: [id], onDelete: Cascade)
+}
+
+model TempChannel {
+  id        String @id @default(cuid()) @map("_id")
+  userId    String
+  guildId   String
+  channelId String
+  name      String
+  userLimit Int?   @default(0)
+  status    Status @default(CLOSE)
+  guild     Guild  @relation(fields: [guildId], references: [guildId], onDelete: Cascade)
+
+  @@unique([userId, guildId])
+}
+
+model Guild {
+  id           String        @id @default(cuid()) @map("_id")
+  guildId      String        @unique
+  TempChannels TempChannel[]
+  Panels       Panel[]
+}
+
+enum Status {
+  OPEN
+  CLOSE
+}
