@@ -1,29 +1,32 @@
-# TypeScript Sapphire Bot example
+# TypeScript Temporary Channels Discord Bot
 
-This is a basic setup of a Discord bot using the [sapphire framework][sapphire] written in TypeScript
+This bot creates a temporary channel for users upon joining a designated channel. The bot will create a new channel and move them to it automatically, the user can modify their channel name, user limit, and toggle between locking and unlocking the channel using the bot's panel that is created once the setup command has been ran.
 
 ## How to use it?
 
 ### Prerequisite
 
+Install the required dependencies by running:
 ```sh
 npm install
+```
+Create an .env file in the root directory and add the neccesary information to it:
+```sh
+DISCORD_TOKEN="YOUR_BOT_TOKEN"
+DATABASE_URL="YOUR_MONGODB_CONNECTION_STRING"
 ```
 
 ### Development
 
-This example can be run with `tsc-watch` to watch the files and automatically restart your bot.
+You can run the bot with `tsc-watch` to watch the files and automatically restart your bot.
 
 ```sh
 npm run watch:start
 ```
 
-### Production
-
-You can also run the bot with `npm dev`, this will first build your code and then run `node ./dist/index.js`. But this is not the recommended way to run a bot in production.
-
 ## License
 
+Built using sapphire framework.
 Dedicated to the public domain via the [Unlicense], courtesy of the Sapphire Community and its contributors.
 
 [sapphire]: https://github.com/sapphiredev/framework
